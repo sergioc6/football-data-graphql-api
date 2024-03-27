@@ -27,21 +27,6 @@ Create the containers
 docker-compose up -d
 ```
 
-### Database
-Enter inside the db container
-```sh
-docker-compose exec db bash
-```
-#### Run migrations
-```sh
-npx sequelize-cli db:migrate
-```
-
-#### Run seeders
-```sh
-npx sequelize-cli db:seed:all
-```
-
 ### Server Development
 By default, the API must be running in localhost:8000
 
