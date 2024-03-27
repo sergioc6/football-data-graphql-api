@@ -18,12 +18,13 @@
     "express-graphql": "^0.12.0",
     "express-rate-limit": "^7.2.0",
     "graphql": "^16.8.1",
-    "join-monster": "^3.3.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
   }
 }
