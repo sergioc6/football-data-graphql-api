@@ -17,7 +17,7 @@ cp .env.example .env
 
 Add your own env variables.
 
-| ENV      | Savings |
+| ENV      | Meaning |
 | -------- | ------- |
 | FOOTBALL_DATA_API_TOKEN  | Add your own API TOKEN for use Football Data API    |
 
