@@ -27,13 +27,26 @@ Create the containers
 docker-compose up -d
 ```
 
-### Server Development
-By default, the API must be running in localhost:8000
+### Database
+Enter inside the db container
+```sh
+docker-compose exec app bash
+```
+#### Run migrations
+```sh
+npx sequelize-cli db:migrate
+```
 
-### API Docs
-You could find the API Documentation in the follow [link](https://documenter.getpostman.com/view/1096358/2sA35D6j2E) 
+#### Run seeders
+```sh
+npx sequelize-cli db:seed:all
+```
+
+### Server Development
+By default, the API must be running in localhost:8000/api
 
 ### TODO
 - Add filters and order in Get List endpoints
 - Add validations in each endpoint (express-validator)
+- Add DB Transaction in import competition process.
 - Add Unit Tests
