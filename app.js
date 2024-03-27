@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const graphql = require('graphql');
 const logger = require('morgan');
 const cors = require('cors');
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+
 const { rateLimit } = require('express-rate-limit');
 
 var app = express();
@@ -19,6 +20,18 @@ app.use(rateLimit({
     message: 'Too many request, please try again later.'
 }));
 
-app.use('/graphql/api', graph);
+// Definir el esquema GraphQL
+const schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
 
-module.exports = app;
+app.use('/api', graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+  }));
+
+app.listen(process.env.PORT || 8000, () => {
+    console.log('Graphql API is Running!')
+});

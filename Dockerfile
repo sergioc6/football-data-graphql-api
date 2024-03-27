@@ -4,11 +4,9 @@ WORKDIR /api
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm --legacy-peer-deps install
 
 COPY . .
-
-COPy .env.example .env
 
 EXPOSE 8000
 
