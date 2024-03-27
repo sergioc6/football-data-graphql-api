@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/api
+
+  db:
+    image: postgres:16.2
+    environment:
+      POSTGRES_DB: football-data
+      POSTGRES_USER: football-data
+      POSTGRES_PASSWORD: football-data
+    ports:
+      - "5432:5432"
