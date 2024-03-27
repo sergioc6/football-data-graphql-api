@@ -1,5 +1,33 @@
 # Queries
 
+Get Player by ID:
+```graphql
+query Player {
+    player(id: 123) {
+        id
+        name
+        position
+        dateOfBirth
+        nationality
+        teamId
+    }
+}
+```
+
+List Players:
+```graphql
+query Players {
+    players(page: 1, pageSize: 15) {
+        id
+        name
+        position
+        dateOfBirth
+        nationality
+        teamId
+    }
+}
+```
+
 Get Coach by ID:
 ```graphql
 query Coach {
