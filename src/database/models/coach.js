@@ -22,5 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Coach',
   });
+
+  // Define el accessor para dateOfBirth
+  Object.defineProperty(Coach.prototype, 'dateOfBirthString', {
+    get() {
+      // Convierte la fecha a una cadena en formato 'YYYY-MM-DD'
+      return this.getDataValue('dateOfBirth').toISOString().slice(0, 10);
+    }
+  });
+
   return Coach;
 };

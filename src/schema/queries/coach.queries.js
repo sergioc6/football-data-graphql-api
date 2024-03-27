@@ -10,13 +10,13 @@ module.exports = {
         async resolve(parentValue, args) {
             const { id } = args;
             const coach = await Coach.findByPk(id);
-            if(!coach){
+            if (!coach) {
                 return null;
             }
             return {
                 id: coach.id,
-                name: coach.id,
-                dateOfBirth: coach.dateOfBirth,
+                name: coach.name,
+                dateOfBirth: coach.dateOfBirthString,
                 nationality: coach.nationality,
                 teamId: coach.teamId
             }
@@ -26,13 +26,22 @@ module.exports = {
         type: new GraphQLList(CoachType),
         args: { page: { type: GraphQLInt }, pageSize: { type: GraphQLInt } },
         async resolve(parentValue, args) {
-            const { page = 1, pageSize = 20} = args;
+            const { page = 1, pageSize = 20 } = args;
             const { limit, offset } = getLimitAndOffset(page, pageSize);
             const { count, rows } = await Coach.findAndCountAll({
                 offset, limit
-            }); 
-            
-            return rows;
+            });
+
+            const result = rows.map(coach => {
+                return {
+                    id: coach.id,
+                    name: coach.name,
+                    dateOfBirth: coach.dateOfBirthString,
+                    nationality: coach.nationality,
+                    teamId: coach.teamId
+                }
+            })
+            return result;
         }
     }
 };

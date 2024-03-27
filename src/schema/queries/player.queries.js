@@ -10,14 +10,15 @@ module.exports = {
         async resolve(parentValue, args) {
             const { id } = args;
             const player = await Player.findByPk(id);
-            if(!player){
+            if (!player) {
                 return null;
             }
+            console.log(player.dateOfBirthString);
             return {
                 id: player.id,
-                name: player.id,
+                name: player.name,
                 position: player.position,
-                dateOfBirth: player.dateOfBirth,
+                dateOfBirth: player.dateOfBirthString,
                 nationality: player.nationality,
                 teamId: player.teamId
             }
@@ -33,7 +34,18 @@ module.exports = {
                 offset, limit
             }); 
             
-            return rows;
+            const result = rows.map(player => {
+                return {
+                    id: player.id,
+                    name: player.name,
+                    position: player.position,
+                    dateOfBirth: player.dateOfBirthString,
+                    nationality: player.nationality,
+                    teamId: player.teamId 
+                }
+            });
+
+            return result;
         }
     }
 };
