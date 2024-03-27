@@ -3,12 +3,10 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-
 const { rateLimit } = require('express-rate-limit');
+const schema = require('./src/schema');
 
-var app = express();
-
+const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,18 +18,11 @@ app.use(rateLimit({
     message: 'Too many request, please try again later.'
 }));
 
-// Definir el esquema GraphQL
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
 app.use('/api', graphqlHTTP({
-    schema: schema,
+    schema,
     graphiql: true,
   }));
 
 app.listen(process.env.PORT || 8000, () => {
-    console.log('Graphql API is Running!')
+    console.log(`Graphql API is running on localhost:${process.env.PORT || 8000}!`)
 });
