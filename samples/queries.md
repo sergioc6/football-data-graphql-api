@@ -47,13 +47,20 @@ query Players {
 Get Coach by ID:
 ```graphql
 query Coach {
-    coach(id: "1") {
-        id
-        name
-        dateOfBirth
-        nationality
-        teamId
+  coach(id: "5231") {
+    id
+    name
+    dateOfBirth
+    nationality
+    teamId
+    team {
+      id
+      name
+      shortName
+      areaName
+      address
     }
+  }
 }
 ```
 
@@ -61,13 +68,20 @@ List Coaches:
 
 ```graphql
 query Coaches {
-    coaches(pageSize: 10, page: 1) {
-        id
-        name
-        dateOfBirth
-        nationality
-        teamId
+  coaches(pageSize: 10, page: 1) {
+    id
+    name
+    dateOfBirth
+    nationality
+    teamId
+    team {
+      id
+      name
+      shortName
+      areaName
+      address
     }
+  }
 }
 ```
 

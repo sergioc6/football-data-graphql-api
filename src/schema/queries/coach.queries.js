@@ -1,6 +1,6 @@
 const { GraphQLList, GraphQLNonNull, GraphQLID, GraphQLInt } = require("graphql");
 const CoachType = require('./../types/coach.type');
-const { Coach } = require('./../../database/models/');
+const { Coach, Team } = require('./../../database/models/');
 const { getLimitAndOffset } = require('./../../utils/pagination.util');
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
         args: { id: { type: new GraphQLNonNull(GraphQLID) } },
         async resolve(parentValue, args) {
             const { id } = args;
-            const coach = await Coach.findByPk(id);
+            const coach = await Coach.findByPk(id, { include: Team });
             if (!coach) {
                 return null;
             }
@@ -18,7 +18,15 @@ module.exports = {
                 name: coach.name,
                 dateOfBirth: coach.dateOfBirthString,
                 nationality: coach.nationality,
-                teamId: coach.teamId
+                teamId: coach.teamId,
+                team: {
+                    id: coach.Team.id,
+                    name: coach.Team.name,
+                    tla: coach.Team.tla,
+                    shortName: coach.Team.shortName,
+                    areaName: coach.Team.areaName,
+                    address: coach.Team.address
+                }
             }
         }
     },
@@ -29,7 +37,7 @@ module.exports = {
             const { page = 1, pageSize = 20 } = args;
             const { limit, offset } = getLimitAndOffset(page, pageSize);
             const { count, rows } = await Coach.findAndCountAll({
-                offset, limit
+                offset, limit, include: Team
             });
 
             const result = rows.map(coach => {
@@ -38,7 +46,15 @@ module.exports = {
                     name: coach.name,
                     dateOfBirth: coach.dateOfBirthString,
                     nationality: coach.nationality,
-                    teamId: coach.teamId
+                    teamId: coach.teamId,
+                    team: {
+                        id: coach.Team.id,
+                        name: coach.Team.name,
+                        tla: coach.Team.tla,
+                        shortName: coach.Team.shortName,
+                        areaName: coach.Team.areaName,
+                        address: coach.Team.address
+                    }
                 }
             })
             return result;

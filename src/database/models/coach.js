@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Coach.belongsTo(models.Team, { foreignKey: 'teamId' });
     }
   }
   Coach.init({
