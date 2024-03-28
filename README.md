@@ -33,9 +33,9 @@ Enter inside the db container
 docker-compose exec app bash
 ```
 
-#### Run seeders
+#### Run migrations
 ```sh
-npx sequelize-cli db:seed:all
+npx sequelize-cli db:migrate
 ```
 
 ### Server Development
