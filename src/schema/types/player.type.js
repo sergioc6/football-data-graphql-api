@@ -1,4 +1,5 @@
 const { GraphQLObjectType, GraphQLString } = require('graphql');;
+const TeamType = require('./team.type');
 
 const PlayerType = new GraphQLObjectType({
     name: 'Player',
@@ -8,7 +9,8 @@ const PlayerType = new GraphQLObjectType({
         position: { type: GraphQLString },
         dateOfBirth: { type: GraphQLString },
         nationality: { type: GraphQLString },
-        teamId: { type: GraphQLString }
+        teamId: { type: GraphQLString },
+        team: { type: TeamType}
     }
 });
 

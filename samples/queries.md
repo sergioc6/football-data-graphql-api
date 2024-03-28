@@ -3,28 +3,44 @@
 Get Player by ID:
 ```graphql
 query Player {
-    player(id: 123) {
-        id
-        name
-        position
-        dateOfBirth
-        nationality
-        teamId
+  player(id: 4477) {
+    id
+    name
+    position
+    dateOfBirth
+    nationality
+    teamId
+    team {
+      id
+      name
+      tla
+      shortName
+      areaName
+      address
     }
+  }
 }
 ```
 
 List Players:
 ```graphql
 query Players {
-    players(page: 1, pageSize: 15) {
-        id
-        name
-        position
-        dateOfBirth
-        nationality
-        teamId
+  players(page: 1, pageSize: 15) {
+    id
+    name
+    position
+    dateOfBirth
+    nationality
+    teamId
+    team {
+      id
+      name
+      tla
+      shortName
+      areaName
+      address
     }
+  }
 }
 ```
 
