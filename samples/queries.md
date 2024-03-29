@@ -102,14 +102,14 @@ query Team {
 List Teams:
 ```graphql
 query Teams {
-    teams(page: 1, pageSize: 10) {
-        id
-        name
-        tla
-        shortName
-        areaName
-        address
-    }
+  teams(page: 1, pageSize: 100, competitionId: 2016) {
+    id
+    name
+    tla
+    shortName
+    areaName
+    address
+  }
 }
 ```
 
