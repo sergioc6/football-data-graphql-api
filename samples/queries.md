@@ -10,14 +10,6 @@ query Player {
     dateOfBirth
     nationality
     teamId
-    team {
-      id
-      name
-      tla
-      shortName
-      areaName
-      address
-    }
   }
 }
 ```
@@ -32,14 +24,6 @@ query Players {
     dateOfBirth
     nationality
     teamId
-    team {
-      id
-      name
-      tla
-      shortName
-      areaName
-      address
-    }
   }
 }
 ```
@@ -53,13 +37,6 @@ query Coach {
     dateOfBirth
     nationality
     teamId
-    team {
-      id
-      name
-      shortName
-      areaName
-      address
-    }
   }
 }
 ```
@@ -74,13 +51,6 @@ query Coaches {
     dateOfBirth
     nationality
     teamId
-    team {
-      id
-      name
-      shortName
-      areaName
-      address
-    }
   }
 }
 ```
@@ -88,14 +58,29 @@ query Coaches {
 Get Team by ID:
 ```graphql
 query Team {
-    team(id: "1") {
-        id
-        name
-        tla
-        shortName
-        areaName
-        address
+  team(id: "74") {
+    id
+    name
+    tla
+    shortName
+    areaName
+    address
+    players {
+      id
+      name
+      position
+      dateOfBirth
+      nationality
+      teamId
     }
+    coaches {
+      id
+      name
+      dateOfBirth
+      nationality
+      teamId
+    }
+  }
 }
 ```
 
@@ -109,6 +94,21 @@ query Teams {
     shortName
     areaName
     address
+    players {
+      id
+      name
+      position
+      dateOfBirth
+      nationality
+      teamId
+    }
+    coaches {
+      id
+      name
+      dateOfBirth
+      nationality
+      teamId
+    }
   }
 }
 ```

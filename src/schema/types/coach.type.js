@@ -1,6 +1,4 @@
-const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString } = graphql;
-const TeamType = require('./team.type');
+const { GraphQLObjectType, GraphQLString } = require('graphql');
 
 const CoachType = new GraphQLObjectType({
     name: 'Coach',
@@ -9,8 +7,7 @@ const CoachType = new GraphQLObjectType({
         name: { type: GraphQLString },
         dateOfBirth: { type: GraphQLString },
         nationality: { type: GraphQLString },
-        teamId: { type: GraphQLString },
-        team: { type: TeamType }
+        teamId: { type: GraphQLString }
     }
 });
 

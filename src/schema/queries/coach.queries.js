@@ -9,7 +9,7 @@ module.exports = {
         args: { id: { type: new GraphQLNonNull(GraphQLID) } },
         async resolve(parentValue, args) {
             const { id } = args;
-            const coach = await Coach.findByPk(id, { include: Team });
+            const coach = await Coach.findByPk(id);
             if (!coach) {
                 return null;
             }
@@ -18,15 +18,7 @@ module.exports = {
                 name: coach.name,
                 dateOfBirth: coach.dateOfBirthString,
                 nationality: coach.nationality,
-                teamId: coach.teamId,
-                team: {
-                    id: coach.Team.id,
-                    name: coach.Team.name,
-                    tla: coach.Team.tla,
-                    shortName: coach.Team.shortName,
-                    areaName: coach.Team.areaName,
-                    address: coach.Team.address
-                }
+                teamId: coach.teamId
             }
         }
     },
@@ -46,15 +38,7 @@ module.exports = {
                     name: coach.name,
                     dateOfBirth: coach.dateOfBirthString,
                     nationality: coach.nationality,
-                    teamId: coach.teamId,
-                    team: {
-                        id: coach.Team.id,
-                        name: coach.Team.name,
-                        tla: coach.Team.tla,
-                        shortName: coach.Team.shortName,
-                        areaName: coach.Team.areaName,
-                        address: coach.Team.address
-                    }
+                    teamId: coach.teamId
                 }
             })
             return result;

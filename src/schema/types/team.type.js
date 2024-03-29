@@ -1,5 +1,6 @@
-const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
+const CoachType = require('./coach.type');
+const PlayerType = require('./player.type');
 
 const TeamType = new GraphQLObjectType({
     name: 'Team',
@@ -9,7 +10,9 @@ const TeamType = new GraphQLObjectType({
         tla: { type: GraphQLString },
         shortName: { type: GraphQLString },
         areaName: { type: GraphQLString },
-        address: { type: GraphQLString }
+        address: { type: GraphQLString },
+        coaches: { type: new GraphQLList(CoachType) },
+        players: { type: new GraphQLList(PlayerType) }
     }
 });
 

@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   Object.defineProperty(Player.prototype, 'dateOfBirthString', {
     get() {
       // Convierte la fecha a una cadena en formato 'YYYY-MM-DD'
-      return this.getDataValue('dateOfBirth').toISOString().slice(0, 10);
+      return this.getDataValue('dateOfBirth').toISOString().slice(0, 10) ?? '';
     }
   });
 
